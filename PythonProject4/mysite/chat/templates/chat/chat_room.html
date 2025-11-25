@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="chat-header-title">
+    Chat with {{ other_user.username }}
+</h2>
+
+<div class="chat-window">
+    <!-- Messages Area (scrollable) -->
+    <div class="messages-area" id="messages-area">
+        {% for message in messages %}
+        <div class="chat-bubble {% if message.sender == user %}me{% else %}them{% endif %}">
+            <p>{{ message.content }}</p>
+            <span class="timestamp">{{ message.timestamp|date:"H:i" }}</span>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Input area (always visible) -->
+<form method="POST" class="chat-input-area">
+    {% csrf_token %}
+    <textarea name="content" placeholder="Type a message..."></textarea>
+    <button type="submit">Send</button>
+</form>
+
+<script>
+    // Auto-scroll to bottom on page load
+    const msgArea = document.getElementById("messages-area");
+    msgArea.scrollTop = msgArea.scrollHeight;
+</script>
+
+{% endblock %}

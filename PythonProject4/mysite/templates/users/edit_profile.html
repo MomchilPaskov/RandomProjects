@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Edit Profile</h2>
+
+<form method="POST" class="register-form">
+    {% csrf_token %}
+
+    {% for field in form %}
+        <div class="form-group">
+            <label>{{ field.label }}</label>
+            {{ field }}
+
+            {% if field.help_text %}
+                <small class="help-text">{{ field.help_text|safe }}</small>
+            {% endif %}
+
+            {% if field.errors %}
+                <div class="error">{{ field.errors }}</div>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+    <button type="submit" class="register-button">Save</button>
+</form>
+
+<p><a href="{% url 'profile' %}">Back to Profile</a></p>
+
+{% endblock %}

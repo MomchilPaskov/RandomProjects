@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Notifications</h2>
+
+{% if messages %}
+    <ul class="notifications-list">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">
+                {{ message }}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No notifications.</p>
+{% endif %}
+{% endblock %}

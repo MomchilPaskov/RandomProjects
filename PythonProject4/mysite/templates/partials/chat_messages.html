@@ -1,0 +1,6 @@
+{% for message in messages %}
+<div class="chat-bubble {% if message.sender == user %}me{% else %}them{% endif %}">
+    <p>{{ message.content }}</p>
+    <span class="timestamp">{{ message.timestamp|date:"H:i" }}</span>
+</div>
+{% endfor %}

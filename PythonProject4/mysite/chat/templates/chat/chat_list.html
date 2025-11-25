@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="chat-title">Messages</h2>
+
+<div class="chat-list">
+    {% for user in users %}
+    <a href="{% url 'chat_room' user.id %}" class="chat-list-item">
+        <div class="chat-avatar">
+            {{ user.username|first|upper }}
+        </div>
+
+        <div class="chat-list-info">
+            <p class="chat-username">{{ user.username }}</p>
+            <p class="chat-preview">Tap to open chat</p>
+        </div>
+    </a>
+    {% empty %}
+    <p>No users available.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}
